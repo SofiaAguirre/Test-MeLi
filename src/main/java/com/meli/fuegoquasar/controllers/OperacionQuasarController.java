@@ -1,20 +1,38 @@
 package com.meli.fuegoquasar.controllers;
 
-import com.meli.fuegoquasar.models.MessageReq;
-import com.meli.fuegoquasar.models.MessageRes;
-import com.meli.fuegoquasar.models.MessageSplitReq;
+import com.meli.fuegoquasar.exceptions.InvalidSatellitesException;
+import com.meli.fuegoquasar.models.*;
+import com.meli.fuegoquasar.services.LocationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api", consumes = MediaType.APPLICATION_JSON_VALUE)
 public class OperacionQuasarController {
 
+    @Autowired
+    private LocationService locationService;
+
     @PostMapping("/topsecret")
-    public MessageRes postAllSatellitesMessages(@RequestBody MessageReq messageReq){
-        //Idealmente se recibe el mensaje junto con la distancia y nombre de cada uno de los satelites previamente declarados
-        //Se devuelve (en caso de poderse descifrar el mensaje y la posicion) una respuesta.
-        return new MessageRes();
+    public ResponseEntity postAllSatellitesMessages(@RequestBody MessageReq messageReq){
+        Position position;
+        MessageRes messageRes;
+        String message = null;
+        List<Satellite> satelliteList = messageReq.getSatellites();
+        if(satelliteList.size() == 3) {
+            position = locationService.getSatellitePosition(satelliteList);
+            messageRes = new MessageRes(position, message);
+            return ResponseEntity.status(HttpStatus.OK).body(messageRes);
+        } else {
+            throw new InvalidSatellitesException("Quantity of satellites (" + satelliteList.size() + ") is different than the required.");
+        }
     }
 
     @PostMapping("/topsecret_split/{satellite}")

@@ -4,18 +4,18 @@ import java.util.List;
 
 public class MessageReq {
 
-    private List<Satellite> satelites;
+    private List<Satellite> satellites;
 
     public MessageReq(){
 
     }
 
-    public MessageReq(List<Satellite> satelites) {
-        this.satelites = satelites;
+    public MessageReq(List<Satellite> satellites) {
+        this.satellites = satellites;
     }
 
-    public List<Satellite> getSatelites() {
-        return satelites;
+    public List<Satellite> getSatellites() {
+        return satellites;
     }
 
 }
