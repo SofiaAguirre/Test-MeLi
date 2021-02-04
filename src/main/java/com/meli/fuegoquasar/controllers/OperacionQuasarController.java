@@ -23,13 +23,11 @@ public class OperacionQuasarController {
     @PostMapping("/topsecret")
     public ResponseEntity postAllSatellitesMessages(@RequestBody MessageReq messageReq){
         Position position;
-        MessageRes messageRes;
         String message = null;
         List<Satellite> satelliteList = messageReq.getSatellites();
         if(satelliteList.size() == 3) {
             position = locationService.getSatellitePosition(satelliteList);
-            messageRes = new MessageRes(position, message);
-            return ResponseEntity.status(HttpStatus.OK).body(messageRes);
+            return ResponseEntity.status(HttpStatus.OK).body(new MessageRes(position, message));
         } else {
             throw new InvalidSatellitesException("Quantity of satellites (" + satelliteList.size() + ") is different than the required.");
         }
