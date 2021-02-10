@@ -4,9 +4,12 @@ import com.meli.fuegoquasar.cache.CacheConfiguration;
 import com.meli.fuegoquasar.exceptions.BadRequestException;
 import com.meli.fuegoquasar.exceptions.UnknownSatelliteException;
 import com.meli.fuegoquasar.models.MessageReq;
+import com.meli.fuegoquasar.models.MessageRes;
 import com.meli.fuegoquasar.models.MessageSplitReq;
 import com.meli.fuegoquasar.models.Satellite;
 import com.meli.fuegoquasar.services.QuasarOperationService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +29,8 @@ public class OperacionQuasarController {
     private CacheConfiguration cacheConfiguration;
 
     @PostMapping("/topsecret")
-    public ResponseEntity postAllSatellitesMessages(@RequestBody MessageReq messageReq){
+    @ApiOperation(value = "Nivel 2: Servicio que recibe información de los Satelites de la Operacion Quasar")
+    public ResponseEntity<MessageRes> postAllSatellitesMessages(@RequestBody MessageReq messageReq){
         List<Satellite> satelliteList = messageReq.getSatellites();
         try {
             return quasarOperationService.getTopSecretResponse(satelliteList);
@@ -36,6 +40,7 @@ public class OperacionQuasarController {
     }
 
     @PostMapping("/topsecret_split/{satelliteName}")
+    @ApiOperation(value = "Nivel 3: Servicio que recibe información de un Satelite determinado")
     public void postSatelliteMessage(@PathVariable String satelliteName, @RequestBody MessageSplitReq messageSplitReq){
         ConcurrentMap<String, Satellite> satellitesMap = cacheConfiguration.satelliteCache.asMap();
         if(satelliteName.equals("kenobi") || satelliteName.equals("skywalker") || satelliteName.equals("sato")) {
@@ -53,10 +58,11 @@ public class OperacionQuasarController {
     }
 
     @GetMapping("/topsecret_split")
-    public ResponseEntity getTopSecretMessage(){
+    @ApiOperation(value = "Nivel 3: Servicio que retorna fuente y contenido del mensaje de auxilio")
+    public ResponseEntity<MessageRes> getTopSecretMessage(){
         ConcurrentMap<String, Satellite> satellitesMap = cacheConfiguration.satelliteCache.asMap();
         List<Satellite> satelliteList = new ArrayList<>(satellitesMap.values());
-        ResponseEntity responseEntity;
+        ResponseEntity<MessageRes> responseEntity;
         try {
             responseEntity = quasarOperationService.getTopSecretResponse(satelliteList);
             cacheConfiguration.satelliteCache.invalidateAll();

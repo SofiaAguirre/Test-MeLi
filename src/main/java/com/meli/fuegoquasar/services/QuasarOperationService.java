@@ -20,7 +20,7 @@ public class QuasarOperationService {
     @Autowired
     private MessageDecoderService messageDecoderService;
 
-    public ResponseEntity getTopSecretResponse(List<Satellite> satelliteList) {
+    public ResponseEntity<MessageRes> getTopSecretResponse(List<Satellite> satelliteList) {
         Position position;
         String message;
         if(satelliteList.size() == 3) {
