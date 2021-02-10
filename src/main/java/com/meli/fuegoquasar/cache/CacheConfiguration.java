@@ -18,4 +18,5 @@ public class CacheConfiguration {
     public CacheStats getSatelliteCacheStats(){
         return satelliteCache.stats();
     }
+    
 }
