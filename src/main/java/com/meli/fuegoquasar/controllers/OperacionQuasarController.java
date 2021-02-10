@@ -38,17 +38,17 @@ public class OperacionQuasarController {
     @PostMapping("/topsecret_split/{satelliteName}")
     public void postSatelliteMessage(@PathVariable String satelliteName, @RequestBody MessageSplitReq messageSplitReq){
         ConcurrentMap<String, Satellite> satellitesMap = cacheConfiguration.satelliteCache.asMap();
-        if(!satellitesMap.containsKey(satelliteName)) {
-            if(satelliteName.equals("kenobi") || satelliteName.equals("skywalker") || satelliteName.equals("sato")) {
+        if(satelliteName.equals("kenobi") || satelliteName.equals("skywalker") || satelliteName.equals("sato")) {
+            if(!satellitesMap.containsKey(satelliteName)) {
                 double distance = messageSplitReq.getDistance();
                 List<String> messageList = messageSplitReq.getMessage();
                 Satellite satellite = new Satellite(satelliteName, distance, messageList);
                 cacheConfiguration.satelliteCache.put(satelliteName, satellite);
             } else {
-                throw new UnknownSatelliteException("ERROR: Permission denied to satellite " + satelliteName);
+                throw new BadRequestException("ERROR: A message from Satellite " + satelliteName + " already exists on the loop.");
             }
         } else {
-            throw new BadRequestException("ERROR: A message from Satellite " + satelliteName + " already exists on the loop.");
+            throw new UnknownSatelliteException("ERROR: Permission denied to satellite " + satelliteName);
         }
     }
 
