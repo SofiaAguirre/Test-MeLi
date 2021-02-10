@@ -31,5 +31,4 @@ public class QuasarOperationService {
             throw new InvalidSatellitesException("ERROR: Missing information. Quantity of satellites (" + satelliteList.size() + ") is different than the required.");
         }
     }
-
 }
