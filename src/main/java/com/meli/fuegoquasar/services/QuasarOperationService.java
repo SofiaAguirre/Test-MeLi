@@ -28,7 +28,7 @@ public class QuasarOperationService {
             message = messageDecoderService.getMessage(satelliteList);
             return ResponseEntity.status(HttpStatus.OK).body(new MessageRes(position, message));
         } else {
-            throw new InvalidSatellitesException("Quantity of satellites (" + satelliteList.size() + ") is different than the required.");
+            throw new InvalidSatellitesException("ERROR: Missing information. Quantity of satellites (" + satelliteList.size() + ") is different than the required.");
         }
     }
 

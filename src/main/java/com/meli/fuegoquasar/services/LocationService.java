@@ -44,7 +44,7 @@ public class LocationService {
             double positionY = positionArr[1];
             return new Position(positionX, positionY);
         } else {
-            throw new InvalidSatellitesException("All required satellites are not present on request");
+            throw new InvalidSatellitesException("ERROR: All required satellites are not present on request");
         }
     }
 
