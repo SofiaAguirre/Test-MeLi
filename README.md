@@ -9,7 +9,7 @@
 
 🌸 [LinkedIn](https://www.linkedin.com/in/aguirresofia/)
 
-🌸 [Email](sofiaaguirre1@hotmail.com)
+🌸 [Email](mailto:sofiaaguirre1@hotmail.com)
 
 ### Introducción 📋
 
@@ -90,3 +90,80 @@ la fuente y contenido del mensaje de auxilio.
     "details": "uri=/api/topsecret"
 }
 ```
+#### POST /api/topsecret_split/{satellite_name}
+
+https://meli-challenge-sofia.herokuapp.com/api/topsecret_split/{satellite_name}
+
+Servicio que recibe y almacena información de un satélite determinado
+
+##### Request Body
+
+```
+{
+  "distance": 115.5,
+  "message": [
+    "",
+    "es",
+    "",
+    "",
+    "secreto"
+  ]
+}
+```
+##### Response Code
+
+- 200
+
+- 404
+
+```
+{
+    "timestamp": "2021-02-11T23:20:59.271+00:00",
+    "message": "ERROR: A message from Satellite already exists on the loop.",
+    "details": "uri=/api/topsecret_split/{satellite_name}"
+}
+```
+
+#### GET /api/topsecret_split
+
+https://meli-challenge-sofia.herokuapp.com/api/topsecret_split
+
+Servicio que consulta la información almacenada y (de ser posible) devuelve la fuente y contenido del mensaje de auxilio
+
+##### Response Body (200)
+
+```
+{
+    "position": {
+        "x": 53.02806374563455,
+        "y": -33.10069590083003
+    },
+    "message": "este es un mensaje secreto"
+}
+```
+
+##### Response Body (404)
+
+``` 
+{
+    "timestamp": "2021-02-11T23:36:56.609+00:00",
+    "message": "ERROR: Missing information. Quantity of satellites (0) is different than the required.",
+    "details": "uri=/api/topsecret_split"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
