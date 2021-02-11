@@ -69,7 +69,7 @@ la fuente y contenido del mensaje de auxilio.
 }
 ```
 
-##### Response Body (200 OK)
+##### Response Body (200)
 
 ```
 {
@@ -81,7 +81,7 @@ la fuente y contenido del mensaje de auxilio.
 }
 ```
 
-##### Response Body (404 NOT FOUND)
+##### Response Body (404)
 
 ```
 {
@@ -151,6 +151,22 @@ Servicio que consulta la información almacenada y (de ser posible) devuelve la 
     "details": "uri=/api/topsecret_split"
 }
 ```
+
+### Librerias de utilidad 📚 
+
+##### Get Location 
+
+- [com.lemmingapex.trilateration](https://github.com/lemmingapex/trilateration)
+
+##### Cache Implementation
+
+- [Guava](https://github.com/google/guava)
+
+##### Testing
+
+- [JUnit](https://junit.org/junit4/)
+
+- [Assertj](https://github.com/assertj/assertj-core)
 
 
 
