@@ -3,13 +3,13 @@
 
 ## Challenge técnico para MercadoLibre
 
-🌸 [Enunciado] (https://drive.google.com/file/d/1N6oZX8jjiutOrIxnnLNZzdWAfxQ0Yq1R/view?usp=sharing)
+🌸 [Enunciado](https://drive.google.com/file/d/1N6oZX8jjiutOrIxnnLNZzdWAfxQ0Yq1R/view?usp=sharing)
 
-🌸 [Documentacion en Swagger] (https://meli-challenge-sofia.herokuapp.com/swagger-ui.html)
+🌸 [Documentacion en Swagger](https://meli-challenge-sofia.herokuapp.com/swagger-ui.html)
 
-🌸 [LinkedIn] (https://www.linkedin.com/in/aguirresofia/)
+🌸 [LinkedIn](https://www.linkedin.com/in/aguirresofia/)
 
-🌸 [Email] (sofiaaguirre1@hotmail.com)
+🌸 [Email](sofiaaguirre1@hotmail.com)
 
 ### Introducción 📋
 
